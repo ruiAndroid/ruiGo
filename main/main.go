@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
  /**
  使用带缓冲的通道
