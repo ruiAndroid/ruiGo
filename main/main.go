@@ -27,11 +27,6 @@ import (
 
      */
 func main(){
-	ticker:=time.NewTicker(100)
-	defer ticker.Stop()
-	select {
-		case <-ticker.C:
-			fmt.Println("asdasdasd")
-	}
+	fmt.Println("哈哈")
 }
 
