@@ -14,7 +14,7 @@ Supervisord会帮你把管理的应用程序转化为daemon程序,并且可以�
 并且崩溃后会自动重启,保证程序有自我修复功能
  */
 
-func sayhelloName(w http.ResponseWriter, r *http.Request) {
+func hh(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()  //解析参数，默认是不会解析的
 	fmt.Println(r.Form)  //这些信息是输出到服务器端的打印信息
 	fmt.Println("path", r.URL.Path)
@@ -28,7 +28,7 @@ func sayhelloName(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/", sayhelloName) //设置访问的路由
+	http.HandleFunc("/", hh) //设置访问的路由
 	err := http.ListenAndServe(":80", nil) //设置监听的端口
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
