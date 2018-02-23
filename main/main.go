@@ -1,31 +1,36 @@
 package main
 
 import (
+	"net/http"
 	"fmt"
+	"strings"
+	"log"
 )
- /**
- 使用带缓冲的通道
- 在缓冲满载(缓冲被全部使用)之前，给一个带缓冲的通道发送数据不会被阻塞的,而从通道读取数据也不会被阻塞,直到缓冲空了.
- 缓冲容量和类型无关,所以可以(尽管可能带来危险)给一些通道设置不同的容量,只要他们拥有同样的元素类型,内置的cap函数可以返回缓冲区的容量
- 如果容量大于0,通道就是异步的了:缓冲满载(发送)或变空(接收)之前通信不会阻塞,元素会按照发送的顺序被接收
- 如果容量为0或者未设置,通信仅在双方准备好的情况下才可以成功
 
-  */
-  /**
-  信号量模式
-   */
-   /**
-   通道的方向可以用注解来表示他只接受或者发送
-	只发送的通道 var ch chan<-int
-    只接收的通道 var ch <-chan int
-	只接收的通道无法关闭,因为这没意义，关闭通道是发送者用来表示不再给通道发送值了，通道创建的时候都是双向的，但也可以分配有方向的通道变量
-    */
-    /**
-    time.Ticker 以指定的时间间隔重复的向通道C发送时间值
-    时间间隔单位是纳秒(int64)
+/**
+部署go应用
+Supervisord
+Supervisord会帮你把管理的应用程序转化为daemon程序,并且可以通过命令执行开启，关闭，重启等操作
+并且崩溃后会自动重启,保证程序有自我修复功能
+ */
 
-     */
-func main(){
-	fmt.Println("哈哈")
+func hh(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()  //解析参数，默认是不会解析的
+	fmt.Println(r.Form)  //这些信息是输出到服务器端的打印信息
+	fmt.Println("path", r.URL.Path)
+	fmt.Println("scheme", r.URL.Scheme)
+	fmt.Println(r.Form["url_long"])
+	for k, v := range r.Form {
+		fmt.Println("key:", k)
+		fmt.Println("val:", strings.Join(v, ""))
+	}
+	fmt.Fprintf(w, "我爱黄涵") //这个写入到w的是输出到客户端的
 }
 
+func main() {
+	http.HandleFunc("/", hh) //设置访问的路由
+	err := http.ListenAndServe(":80", nil) //设置监听的端口
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
+}
