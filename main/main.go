@@ -31,7 +31,7 @@ fmt.Fprintf(w, "然山海不可平") //这个写入到w的是输出到客户端�
 
 func main() {
 	http.HandleFunc("/", hh) //设置访问的路由
-	err := http.ListenAndServe(":80", nil) //设置监听的端口
+	err := http.ListenAndServe("", nil) //设置监听的端口
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
