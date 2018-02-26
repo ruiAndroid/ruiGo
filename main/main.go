@@ -24,7 +24,7 @@ func hh(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("val:", strings.Join(v, ""))
 }
 
-fmt.Fprintf(w, "然山海不可平") //这个写入到w的是输出到客户端的
+fmt.Fprintf(w, "然山海不可平啊") //这个写入到w的是输出到客户端的
 
 }
 
