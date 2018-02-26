@@ -4,7 +4,6 @@ import (
 	"net/http"
 	"fmt"
 	"strings"
-	"log"
 )
 
 /**
@@ -21,8 +20,8 @@ func hh(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("scheme", r.URL.Scheme)
 	fmt.Println(r.Form["url_long"])
 	for k, v := range r.Form {
-fmt.Println("key:", k)
-fmt.Println("val:", strings.Join(v, ""))
+	fmt.Println("key:", k)
+	fmt.Println("val:", strings.Join(v, ""))
 }
 
 fmt.Fprintf(w, "然山海不可平") //这个写入到w的是输出到客户端的
@@ -31,8 +30,8 @@ fmt.Fprintf(w, "然山海不可平") //这个写入到w的是输出到客户端�
 
 func main() {
 	http.HandleFunc("/", hh) //设置访问的路由
-	err := http.ListenAndServe("", nil) //设置监听的端口
-	if err != nil {
-		log.Fatal("ListenAndServe: ", err)
-	}
+	http.ListenAndServe(":80", nil) //设置监听的端口
+	//if err != nil {
+	//	log.Fatal("ListenAndServe: ", err)
+	//}
 }
