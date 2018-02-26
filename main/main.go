@@ -21,10 +21,12 @@ func hh(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("scheme", r.URL.Scheme)
 	fmt.Println(r.Form["url_long"])
 	for k, v := range r.Form {
-		fmt.Println("key:", k)
-		fmt.Println("val:", strings.Join(v, ""))
-	}
-	fmt.Fprintf(w, "我爱黄涵") //这个写入到w的是输出到客户端的
+fmt.Println("key:", k)
+fmt.Println("val:", strings.Join(v, ""))
+}
+
+fmt.Fprintf(w, "然山海不可平") //这个写入到w的是输出到客户端的
+
 }
 
 func main() {
