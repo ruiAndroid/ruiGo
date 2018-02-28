@@ -11,7 +11,7 @@ import (
 Supervisord
 Supervisord会帮你把管理的应用程序转化为daemon程序,并且可以通过命令执行开启，关闭，重启等操作
 并且崩溃后会自动重启,保证程序有自我修复功能
- */
+*/
 func hh(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()  //解析参数，默认是不会解析的
 	fmt.Println(r.Form)  //这些信息是输出到服务器端的打印信息
