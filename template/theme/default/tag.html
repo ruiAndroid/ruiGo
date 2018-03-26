@@ -1,0 +1,17 @@
+{{define "title"}}标签{{end}}
+{{define "content"}}
+	<article class="post post-list">
+		<h1 class="title">标签：{{.tag.Name}}</h1>
+
+		<div class="entry-content" style="border-bottom: none;">
+
+		相关文章（<strong>{{len .tag.Posts}}</strong>）：
+		<br/>
+		<ul>
+		{{range .tag.Posts}}
+			<li><a href="/post/{{.Path}}">{{.Title}}</a>&nbsp;<span class="date">({{formatTime .PostTime "Jan 02, 2006"}})</span></li>
+		{{end}}
+		</ul>
+		</div>
+	</article>
+{{end}}
