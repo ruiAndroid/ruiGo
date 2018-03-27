@@ -2,7 +2,6 @@ package datasource
 
 import (
 	"../model"
-	"../config"
 )
 const (
 	TypeGir="git"
@@ -20,6 +19,6 @@ var DefaultDataSourcer DataSourcer
 
 //Init数据源初始化
 func Init(){
-	DefaultDataSourcer = NewMySql(config.YamlConfig.Get("datasource.mysqlAddr").String())
+	DefaultDataSourcer = NewMySql("root:jianrui123@tcp(120.79.186.178:3306)/rui")
 	go DefaultDataSourcer.UpdateDataSource()
 }

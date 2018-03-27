@@ -6,7 +6,6 @@ import (
 	"time"
 	"flag"
 	"../datasource"
-	"../config"
 	"../http/controller"
 	"net/http"
 	"../route"
@@ -29,15 +28,15 @@ func main() {
 	//初始化程序路径
 	global.App.InitPath()
 	//以/开头为绝对路径,直接解析
-	Init()
-	config.Parse(configFile)
+	//Init()
+	//config.Parse(configFile)
 	//初始化数据库
 	fmt.Println("初始化数据库")
 	datasource.Init()
 	//从配置文件中获取监听IP和端口
 	fmt.Println("监听ip以及端口")
-	global.App.Host=config.YamlConfig.Get("listen.host").String()
-	global.App.Port=config.YamlConfig.Get("listen.port").String()
+	global.App.Host="0.0.0.0"
+	global.App.Port="80"
 	fmt.Println("ip地址:"+global.App.Host)
 	fmt.Println("端口:"+global.App.Port)
 	addr:=global.App.Host+":"+global.App.Port
