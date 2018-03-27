@@ -67,6 +67,11 @@ type UserBugTrack struct {
 	AudioFileCount string `json:"audio_file_count"`
 	PicFileCount string `json:"pic_file_count"`
 	BugWordId string `json:"bug_word_id"`
+	TestOriginSize string `json:"test_origin_size"`
+	TestWordId []string `json:"test_word_id"`
+	TestAudioFileCount string `json:"test_audio_file_count"`
+	TestPicFileCount string `json:"test_pic_file_count"`
+	TestBugDate string `json:"test_bug_date"`
 }
 
 type TagInfo struct {
@@ -112,14 +117,12 @@ func prepare(db *sql .DB,sql string) *sql.Stmt {
 //插入用户bug信息
 func InsertUserBugInfo(userBugTack *UserBugTrack)bool{
 	//执行插入或者更新的语句
-	fmt.Println("来啊")
-
-	_, e := db.Exec("")
-
+	//先查询数据库中是否有该user_id
+	/*result, e := db.Exec("SELECT * FROM user_bug_track WHERE user_id=?", userBugTack.UserId)
 	if e!=nil{
 		fmt.Println("向数据库插入数据错误:"+e.Error())
 		return false
-	}
+	}*/
 	//返回插入或者更新的结果
 	return true
 }
