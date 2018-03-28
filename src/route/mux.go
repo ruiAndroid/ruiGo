@@ -2,8 +2,8 @@ package route
 
 import (
 	"net/http"
-	"context"
 	"time"
+	"context"
 )
 
 
@@ -27,9 +27,9 @@ func NewBlogMux() *BlogMux{
 //serverHttp路由分发方法 封装http.DefaultServeMux.ServeHttp()
 func (self *BlogMux)ServeHttp(w http.ResponseWriter,r *http.Request){
 	//创建上下文,并写入start_time
-	ctx := context.WithValue(r.Context(), "start_time", time.Now())
+	//ctx := context.WithValue(r.Context(), "start_time", time.Now())
 	//使用上下文
-	r = r.WithContext(ctx)
+	//r = r.WithContext(ctx)
 	//调用http.DefaultServeMux的路由分发方法
 	self.ServeMux.ServeHTTP(w,r)
 }

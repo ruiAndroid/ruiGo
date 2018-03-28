@@ -6,7 +6,7 @@ import (
 	"../global"
 	"gopkg.in/yaml.v2"
 	"database/sql"
-	_"github.com/go-sql-driver/mysql"
+	_"github.com/Go-SQL-Driver/MySQL"
 	"../utils"
 	"os"
 	"../model"
