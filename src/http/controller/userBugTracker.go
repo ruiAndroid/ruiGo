@@ -75,7 +75,7 @@ func (UserBugTrackerController)InsertUserBug(w http.ResponseWriter,r *http.Reque
 			json.NewEncoder(w).Encode(httpJson)
 			fmt.Fprintln(w, httpJson)
 		}
-		fmt.Println(httpJson)
+		//fmt.Println(httpJson)
 	}else{
 		fmt.Println("error")
 		//返回Json告诉客户端格式有问题
