@@ -119,26 +119,42 @@ func InsertUserBugInfo(userBugTack *UserBugTrack)bool{
 	//执行插入或者更新的语句
 	//先查询数据库中是否有该user_id
 	fmt.Println("来了")
-	result:= db.QueryRow("SELECT user_id FROM user_bug_track WHERE user_id=?", userBugTack.UserId)
+	//直接插入进数据库
+/*	tx, e := db.Begin()
+	if e!=nil{
+		return false
+	}*/
 
-/*	if e!=nil{
-		fmt.Println("向数据库插入数据错误:"+e.Error())
+	_, e := db.Exec("INSERT INTO user_bug_track(user_id,download_time,phone_model,sd_card_memory,original_zip_size,word_id,audio_file_count,pic_file_count,bug_word_id,test_origin_size,test_word_id,test_audio_file_count,test_pic_file_count,test_bug_date) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+		userBugTack.UserId,
+		userBugTack.DownloadTime,
+		userBugTack.PhoneModel,
+		userBugTack.SdCardMemory,
+		userBugTack.OriginalZipSize,
+			getString(userBugTack.WordId),
+		userBugTack.AudioFileCount,
+		userBugTack.PicFileCount,
+		userBugTack.BugWordId,
+		userBugTack.TestOriginSize,
+		getString(userBugTack.TestWordId),
+		userBugTack.TestAudioFileCount,
+		userBugTack.TestPicFileCount,
+		userBugTack.TestBugDate, )
+
+	//tx.Commit()
+	if e!=nil{
+		fmt.Print("插入错误:"+e.Error())
 		return false
 	}
+	//result:= db("SELECT user_id FROM user_bug_track WHERE user_id=?", userBugTack.UserId)
 
-	for result.Next(){
-		if err := result.Scan(&userId); err != nil {
-			fmt.Println("错误了兄弟:"+err.Error())
-			return false
-		}
-	}*/
 	var userId string
 
-	err := result.Scan(&userId)
+/*	err := result.Scan(&userId)
 	if err !=nil{
 		fmt.Println("错误了兄弟:"+err.Error())
 		return false
-	}
+	}*/
 	if userId!=""{
 		fmt.Println("查到了")
 	}else{
@@ -147,6 +163,14 @@ func InsertUserBugInfo(userBugTack *UserBugTrack)bool{
 	}
 	//返回插入或者更新的结果
 	return true
+}
+
+func getString(ids []string) string{
+	var idsValue string
+	for _,v:=range ids{
+		idsValue=idsValue+v+","
+	}
+	return idsValue
 }
 
 func arrayToStr(strs []string) string{
