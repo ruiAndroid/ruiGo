@@ -37,7 +37,6 @@ func (UserBugTrackerController)InsertUserBug(w http.ResponseWriter,r *http.Reque
 		return
 	}*/
 	r.ParseForm()
-	fmt.Println("请求的方式:"+r.Method)
 	/*if r.Method=="GET"{
 		fmt.Println("GET请求")
 		fmt.Println("userData:", r.Form["userData"])
@@ -51,8 +50,6 @@ func (UserBugTrackerController)InsertUserBug(w http.ResponseWriter,r *http.Reque
 	httpJson:=&HttpJson{}
 	if len(r.Form["userData"]) > 0 && r.Form["userData"][0]!=""{
 		value=r.Form["userData"][0]
-		i := len(value)
-		fmt.Println(i)
 		//转化json
 		userBugTrackInfo :=&datasource.UserBugTrack{}
 		err := json.Unmarshal([]byte(value), userBugTrackInfo)
@@ -63,9 +60,9 @@ func (UserBugTrackerController)InsertUserBug(w http.ResponseWriter,r *http.Reque
 			return
 		}
 		//插入数据库
-		fmt.Printf("客户端传过来的json: %v",userBugTrackInfo)
+		fmt.Printf("客户端传过来的json: %v \n",userBugTrackInfo)
 		result:=datasource.InsertUserBugInfo(userBugTrackInfo)
-		fmt.Printf("%b",result)
+		fmt.Printf("查询的结果:%b",result)
 		if result{
 			httpJson=&HttpJson{Msg:"ok",Code:"200"}
 			json.NewEncoder(w).Encode(httpJson)

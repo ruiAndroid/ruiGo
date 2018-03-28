@@ -118,11 +118,33 @@ func prepare(db *sql .DB,sql string) *sql.Stmt {
 func InsertUserBugInfo(userBugTack *UserBugTrack)bool{
 	//执行插入或者更新的语句
 	//先查询数据库中是否有该user_id
-	/*result, e := db.Exec("SELECT * FROM user_bug_track WHERE user_id=?", userBugTack.UserId)
-	if e!=nil{
+	fmt.Println("来了")
+	result:= db.QueryRow("SELECT user_id FROM user_bug_track WHERE user_id=?", userBugTack.UserId)
+
+/*	if e!=nil{
 		fmt.Println("向数据库插入数据错误:"+e.Error())
 		return false
+	}
+
+	for result.Next(){
+		if err := result.Scan(&userId); err != nil {
+			fmt.Println("错误了兄弟:"+err.Error())
+			return false
+		}
 	}*/
+	var userId string
+
+	err := result.Scan(&userId)
+	if err !=nil{
+		fmt.Println("错误了兄弟:"+err.Error())
+		return false
+	}
+	if userId!=""{
+		fmt.Println("查到了")
+	}else{
+		fmt.Println("没有查到")
+
+	}
 	//返回插入或者更新的结果
 	return true
 }
