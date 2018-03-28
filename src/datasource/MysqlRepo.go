@@ -8,9 +8,9 @@ import (
 	"database/sql"
 	"../utils"
 	"os"
-	"github.com/go-sql-driver/mysql"
 	"../model"
 	"bytes"
+	_"github.com/go-sql-driver/mysql"
 )
 
 const(
