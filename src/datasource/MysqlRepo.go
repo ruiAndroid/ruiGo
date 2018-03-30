@@ -225,6 +225,7 @@ func (self *MysqlRepo)GenIndexYaml(){
 	}
 	indexYaml := "C:/Users/Administrator/Desktop/goExample/myDreamGo/data/post/"+ IndexFile
 	ioutil.WriteFile(indexYaml, buf, 0777)
+
 }
 
 //genOnePost 组装一个post

@@ -4,7 +4,6 @@
     <list default="true" id="0a0ead62-41d9-4ff6-a715-a973cc74ea34" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/datasource/MysqlRepo.go" afterPath="$PROJECT_DIR$/src/datasource/MysqlRepo.go" />
-      <change beforePath="$PROJECT_DIR$/src/datasource/ds.go" afterPath="$PROJECT_DIR$/src/datasource/ds.go" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,20 +17,8 @@
       <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="27" column="13" lean-forward="true" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-              <folding>
-                <element signature="e#14#136#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ds.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/datasource/ds.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+            <state relative-caret-position="203">
+              <caret line="35" column="21" lean-forward="true" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -40,23 +27,12 @@
       <file leaf-file-name="MysqlRepo.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/datasource/MysqlRepo.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="127" column="92" lean-forward="false" selection-start-line="127" selection-start-column="92" selection-end-line="127" selection-end-column="92" />
+            <state relative-caret-position="265">
+              <caret line="212" column="27" lean-forward="true" selection-start-line="212" selection-start-column="27" selection-end-line="212" selection-end-column="27" />
               <folding>
                 <element signature="e#20#173#0" expanded="true" />
-                <marker date="1522249725782" expanded="true" signature="3129:3397" ph="INSERT INTO user_bug_track... " />
-                <marker date="1522249725782" expanded="true" signature="3907:3957" ph="SELECT user_... user_bug_track" />
+                <marker date="1522315085744" expanded="true" signature="3129:3397" ph="INSERT INTO user_bug_track... " />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="userBugTracker.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/http/controller/userBugTracker.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="34" column="26" lean-forward="true" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -89,7 +65,7 @@
       <find>InsertUserBugInfo</find>
     </findStrings>
   </component>
-  <component name="GOROOT" path="C:\Go" />
+  <component name="GOROOT" path="D:\Go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -117,6 +93,7 @@
         <option value="$PROJECT_DIR$/src/route/mux.go" />
         <option value="$PROJECT_DIR$/src/http/controller/userBugTracker.go" />
         <option value="$PROJECT_DIR$/src/datasource/ds.go" />
+        <option value="$PROJECT_DIR$/src/main/chanDemo.go" />
         <option value="$PROJECT_DIR$/src/datasource/MysqlRepo.go" />
       </list>
     </option>
@@ -147,8 +124,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -169,12 +146,13 @@
             </path>
             <path>
               <item name="ruiGo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="ruiGo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ruiGo" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go SDK 1.9.2" type="20ee2d1f:SyntheticLibraryElementNode" />
             </path>
           </expand>
           <select />
@@ -188,16 +166,16 @@
     <property name="DefaultGoTemplateProperty" value="Go File" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\goExample\myDreamGo\src\config" />
+      <recent name="C:\Users\Administrator\Desktop\goExample\myDreamGo\static" />
+      <recent name="C:\Users\Administrator\Desktop\goExample\myDreamGo\template\theme" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Administrator\Desktop\goExample\myDreamGo\src\http\controller" />
       <recent name="C:\Users\Administrator\Desktop\goExample\myDreamGo\src\config" />
       <recent name="C:\Users\Administrator\Desktop\goExample\myDreamGo\src\main" />
       <recent name="C:\Users\Administrator\Desktop\goExample\myDreamGo\template\theme\default" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Administrator\Desktop\goExample\myDreamGo\src\config" />
-      <recent name="C:\Users\Administrator\Desktop\goExample\myDreamGo\static" />
-      <recent name="C:\Users\Administrator\Desktop\goExample\myDreamGo\template\theme" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -212,13 +190,21 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build main.go">
+  <component name="RunManager" selected="Go Build.go build chanDemo.go">
     <configuration name="go build MysqlRepo.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="myDreamGo" />
       <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
       <filePath value="$PROJECT_DIR$/src/datasource/MysqlRepo.go" />
+      <directory value="$PROJECT_DIR$/" />
+    </configuration>
+    <configuration name="go build chanDemo.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
+      <module name="myDreamGo" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/src/main/chanDemo.go" />
       <directory value="$PROJECT_DIR$/" />
     </configuration>
     <configuration name="go build main/" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
@@ -237,14 +223,6 @@
       <filePath value="$PROJECT_DIR$/src/main/main.go" />
       <directory value="$PROJECT_DIR$/" />
     </configuration>
-    <configuration name="go build myDreamGo/" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
-      <module name="myDreamGo" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <go_parameters value="-i" />
-      <kind value="DIRECTORY" />
-      <filePath value="$PROJECT_DIR$/" />
-      <directory value="$PROJECT_DIR$" />
-    </configuration>
     <configuration name="go build src/" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="myDreamGo" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -254,19 +232,19 @@
       <directory value="$PROJECT_DIR$/src" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Go Build.go build myDreamGo/" />
-      <item index="1" class="java.lang.String" itemvalue="Go Build.go build main.go" />
-      <item index="2" class="java.lang.String" itemvalue="Go Build.go build src/" />
-      <item index="3" class="java.lang.String" itemvalue="Go Build.go build main/" />
-      <item index="4" class="java.lang.String" itemvalue="Go Build.go build MysqlRepo.go" />
+      <item index="0" class="java.lang.String" itemvalue="Go Build.go build main.go" />
+      <item index="1" class="java.lang.String" itemvalue="Go Build.go build src/" />
+      <item index="2" class="java.lang.String" itemvalue="Go Build.go build main/" />
+      <item index="3" class="java.lang.String" itemvalue="Go Build.go build MysqlRepo.go" />
+      <item index="4" class="java.lang.String" itemvalue="Go Build.go build chanDemo.go" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Go Build.go build main.go" />
-        <item index="1" class="java.lang.String" itemvalue="Go Build.go build MysqlRepo.go" />
-        <item index="2" class="java.lang.String" itemvalue="Go Build.go build src/" />
-        <item index="3" class="java.lang.String" itemvalue="Go Build.go build main/" />
-        <item index="4" class="java.lang.String" itemvalue="Go Build.go build myDreamGo/" />
+        <item index="0" class="java.lang.String" itemvalue="Go Build.go build chanDemo.go" />
+        <item index="1" class="java.lang.String" itemvalue="Go Build.go build main.go" />
+        <item index="2" class="java.lang.String" itemvalue="Go Build.go build MysqlRepo.go" />
+        <item index="3" class="java.lang.String" itemvalue="Go Build.go build src/" />
+        <item index="4" class="java.lang.String" itemvalue="Go Build.go build main/" />
       </list>
     </recent_temporary>
   </component>
@@ -274,14 +252,15 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-6" y="-6" width="1932" height="1052" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17130308" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.119791664" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15658747" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43882546" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14470842" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -302,9 +281,9 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15658747" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42384106" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20518358" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17130308" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17083333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912844" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -327,18 +306,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/datasource/MysqlRepo.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1058">
-          <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding>
-            <element signature="e#20#173#0" expanded="true" />
-            <marker date="1522249725782" expanded="true" signature="3129:3397" ph="INSERT INTO user_bug_track... " />
-            <marker date="1522249725782" expanded="true" signature="3907:3957" ph="SELECT user_... user_bug_track" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/datasource/ds.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
@@ -358,9 +325,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="621">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding>
-            <element signature="e#14#136#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -391,8 +356,7 @@
           <caret line="46" column="23" lean-forward="true" selection-start-line="46" selection-start-column="23" selection-end-line="46" selection-end-column="23" />
           <folding>
             <element signature="e#20#173#0" expanded="true" />
-            <marker date="1522249725782" expanded="true" signature="3129:3397" ph="INSERT INTO user_bug_track... " />
-            <marker date="1522249725782" expanded="true" signature="3907:3957" ph="SELECT user_... user_bug_track" />
+            <marker date="1522315085744" expanded="true" signature="3129:3397" ph="INSERT INTO user_bug_track... " />
           </folding>
         </state>
       </provider>
@@ -401,9 +365,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#14#136#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -425,9 +387,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#14#136#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -449,9 +409,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#14#136#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -466,9 +424,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
           <caret line="9" column="22" lean-forward="false" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-          <folding>
-            <element signature="e#14#136#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -640,40 +596,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/datasource/ds.go">
+    <entry file="file://$PROJECT_DIR$/src/http/controller/userBugTracker.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+        <state relative-caret-position="221">
+          <caret line="34" column="26" lean-forward="false" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/http/controller/userBugTracker.go">
+    <entry file="file://$PROJECT_DIR$/src/datasource/ds.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="34" column="26" lean-forward="true" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+        <state relative-caret-position="230">
+          <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/chanDemo.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="23" column="9" lean-forward="true" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="27" column="13" lean-forward="true" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-          <folding>
-            <element signature="e#14#136#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="203">
+          <caret line="35" column="21" lean-forward="true" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/datasource/MysqlRepo.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="127" column="92" lean-forward="false" selection-start-line="127" selection-start-column="92" selection-end-line="127" selection-end-column="92" />
+        <state relative-caret-position="265">
+          <caret line="212" column="27" lean-forward="true" selection-start-line="212" selection-start-column="27" selection-end-line="212" selection-end-column="27" />
           <folding>
             <element signature="e#20#173#0" expanded="true" />
-            <marker date="1522249725782" expanded="true" signature="3129:3397" ph="INSERT INTO user_bug_track... " />
-            <marker date="1522249725782" expanded="true" signature="3907:3957" ph="SELECT user_... user_bug_track" />
+            <marker date="1522315085744" expanded="true" signature="3129:3397" ph="INSERT INTO user_bug_track... " />
           </folding>
         </state>
       </provider>
