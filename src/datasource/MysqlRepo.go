@@ -72,6 +72,8 @@ type UserBugTrack struct {
 	TestAudioFileCount string `json:"test_audio_file_count"`
 	TestPicFileCount string `json:"test_pic_file_count"`
 	TestBugDate string `json:"test_bug_date"`
+	BugWordErrorMsg string `json:"bug_word_error_msg"`
+	TestBugMsg string `json:"test_bug_msg"`
 }
 
 type TagInfo struct {
@@ -124,14 +126,13 @@ func InsertUserBugInfo(userBugTack *UserBugTrack)bool{
 	if e!=nil{
 		return false
 	}*/
-
-	_, e := db.Exec("INSERT INTO user_bug_track(user_id,download_time,phone_model,sd_card_memory,original_zip_size,word_id,audio_file_count,pic_file_count,bug_word_id,test_origin_size,test_word_id,test_audio_file_count,test_pic_file_count,test_bug_date) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+	_, e := db.Exec("INSERT INTO user_bug_track(user_id,download_time,phone_model,sd_card_memory,original_zip_size,word_id,audio_file_count,pic_file_count,bug_word_id,test_origin_size,test_word_id,test_audio_file_count,test_pic_file_count,test_bug_date,bug_word_error_msg,test_bug_msg) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 		userBugTack.UserId,
 		userBugTack.DownloadTime,
 		userBugTack.PhoneModel,
 		userBugTack.SdCardMemory,
 		userBugTack.OriginalZipSize,
-			getString(userBugTack.WordId),
+		getString(userBugTack.WordId),
 		userBugTack.AudioFileCount,
 		userBugTack.PicFileCount,
 		userBugTack.BugWordId,
@@ -139,7 +140,10 @@ func InsertUserBugInfo(userBugTack *UserBugTrack)bool{
 		getString(userBugTack.TestWordId),
 		userBugTack.TestAudioFileCount,
 		userBugTack.TestPicFileCount,
-		userBugTack.TestBugDate, )
+		userBugTack.TestBugDate,
+		userBugTack.BugWordErrorMsg,
+		userBugTack.TestBugMsg,
+			)
 
 	//tx.Commit()
 	if e!=nil{
@@ -237,6 +241,7 @@ func (self *MysqlRepo)genOnePost(info articleInfo)(*model.Post){
 			PubTime:info.PubTime,
 			PostTime:info.PostTime,
 			Tags:info.Tags,
+
 		}
 }
 
@@ -249,7 +254,6 @@ func (self *MysqlRepo)UpdateDataSource(){
 			panic(err)
 		}
 	}
-
 	fmt.Println("data/post的存放目录位于:"+mysqlRepoDir)
 	//解析仓库文件，生成首页,归档,标签数据
 	self.GenIndexYaml()
