@@ -11,6 +11,7 @@ import (
 	"../model"
 	"bytes"
 	_"github.com/go-sql-driver/mysql"
+	"strings"
 )
 
 const(
@@ -59,6 +60,7 @@ type articleInfo struct {
  */
 type UserBugTrack struct {
 	UserId string `json:"user_id"`
+	BugType string 	`json:"bug_type"`
 	DownloadTime string `json:"download_time"`
 	PhoneModel string `json:"phone_model"`
 	SdCardMemory string `json:"sd_card_memory"`
@@ -72,8 +74,12 @@ type UserBugTrack struct {
 	TestAudioFileCount string `json:"test_audio_file_count"`
 	TestPicFileCount string `json:"test_pic_file_count"`
 	TestBugDate string `json:"test_bug_date"`
-	BugWordErrorMsg string `json:"bug_word_error_msg"`
-	TestBugMsg string `json:"test_bug_msg"`
+	BugStudyErrMsg string `json:"bug_study_err_msg"`
+	BugStudyErrLineNum string `json:"bug_study_err_line_num"`
+	TestBugErrMsg string `json:"test_bug_err_msg"`
+	TestBugErrLineNum string `json:"test_bug_err_line_num"`
+	VersionId string `json:"version_id"`
+
 }
 
 type TagInfo struct {
@@ -126,47 +132,60 @@ func InsertUserBugInfo(userBugTack *UserBugTrack)bool{
 	if e!=nil{
 		return false
 	}*/
-	_, e := db.Exec("INSERT INTO user_bug_track(user_id,download_time,phone_model,sd_card_memory,original_zip_size,word_id,audio_file_count,pic_file_count,bug_word_id,test_origin_size,test_word_id,test_audio_file_count,test_pic_file_count,test_bug_date,bug_word_error_msg,test_bug_msg) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-		userBugTack.UserId,
-		userBugTack.DownloadTime,
-		userBugTack.PhoneModel,
-		userBugTack.SdCardMemory,
-		userBugTack.OriginalZipSize,
-		getString(userBugTack.WordId),
-		userBugTack.AudioFileCount,
-		userBugTack.PicFileCount,
-		userBugTack.BugWordId,
-		userBugTack.TestOriginSize,
-		getString(userBugTack.TestWordId),
-		userBugTack.TestAudioFileCount,
-		userBugTack.TestPicFileCount,
-		userBugTack.TestBugDate,
-		userBugTack.BugWordErrorMsg,
-		userBugTack.TestBugMsg,
-			)
+	fmt.Println("看下应用的版本:"+userBugTack.VersionId)
+	//如果是1.4.6版本的则将错误信息插入数据库,否则忽略
+	if fold := strings.EqualFold("1.4.6", userBugTack.VersionId);fold==true{
+		fmt.Println("版本号相等")
+		_, e := db.Exec("INSERT INTO user_bug_track(user_id,bug_type,download_time,phone_model,sd_card_memory,original_zip_size,word_id,audio_file_count,pic_file_count,bug_word_id,test_origin_size,test_word_id,test_audio_file_count,test_pic_file_count,test_bug_date,bug_study_err_msg,bug_study_err_line_num,test_bug_err_msg,test_bug_err_line_num,version_id) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+			userBugTack.UserId,
+			userBugTack.BugType,
+			userBugTack.DownloadTime,
+			userBugTack.PhoneModel,
+			userBugTack.SdCardMemory,
+			userBugTack.OriginalZipSize,
+			getString(userBugTack.WordId),
+			userBugTack.AudioFileCount,
+			userBugTack.PicFileCount,
+			userBugTack.BugWordId,
+			userBugTack.TestOriginSize,
+			getString(userBugTack.TestWordId),
+			userBugTack.TestAudioFileCount,
+			userBugTack.TestPicFileCount,
+			userBugTack.TestBugDate,
+			userBugTack.BugStudyErrMsg,
+			userBugTack.BugStudyErrLineNum,
+			userBugTack.TestBugErrMsg,
+			userBugTack.TestBugErrLineNum,
+			userBugTack.VersionId,
+		)
 
-	//tx.Commit()
-	if e!=nil{
-		fmt.Print("插入错误:"+e.Error())
-		return false
-	}
-	//result:= db("SELECT user_id FROM user_bug_track WHERE user_id=?", userBugTack.UserId)
+		//tx.Commit()
+		if e!=nil{
+			fmt.Print("插入错误:"+e.Error())
+			return false
+		}
+		//result:= db("SELECT user_id FROM user_bug_track WHERE user_id=?", userBugTack.UserId)
 
-	var userId string
+		var userId string
 
-/*	err := result.Scan(&userId)
-	if err !=nil{
-		fmt.Println("错误了兄弟:"+err.Error())
-		return false
-	}*/
-	if userId!=""{
-		fmt.Println("查到了")
+		/*	err := result.Scan(&userId)
+			if err !=nil{
+				fmt.Println("错误了兄弟:"+err.Error())
+				return false
+			}*/
+		if userId!=""{
+			fmt.Println("查到了")
+		}else{
+			fmt.Println("没有查到")
+
+		}
+		//返回插入或者更新的结果
+		return true
 	}else{
-		fmt.Println("没有查到")
-
+		fmt.Println("版本号不相等")
+		return false
 	}
-	//返回插入或者更新的结果
-	return true
+
 }
 
 func getString(ids []string) string{
