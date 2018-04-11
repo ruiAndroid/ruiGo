@@ -71,8 +71,11 @@ func (UserBugTrackerController)InsertUserBug(w http.ResponseWriter,r *http.Reque
 		year:=time.Now().Year()
 		month:=time.Now().Month().String()//time.Now().Month().String()
 		day:=time.Now().Day()
+		hour:=time.Now().Hour()
+		minute:=time.Now().Minute()
+		second:=time.Now().Second()
 
-		requestRecord.RequestTime=strconv.Itoa(year)+"/"+month+"/"+strconv.Itoa(day)
+		requestRecord.RequestTime=strconv.Itoa(year)+"/"+month+"/"+strconv.Itoa(day)+"--"+strconv.Itoa(hour)+":"+strconv.Itoa(minute)+":"+strconv.Itoa(second)
 		requestRecord.RequestInterface="bug track"
 		datasource.RequestRecord(requestRecord)
 
