@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"../../datasource"
 	"time"
+	"strconv"
 )
 
 //通过以下方式都可以访问到首页
@@ -67,7 +68,11 @@ func (UserBugTrackerController)InsertUserBug(w http.ResponseWriter,r *http.Reque
 		//记录请求
 		requestRecord:=&datasource.RequestRecordStruct{}
 		requestRecord.UserId=userBugTrackInfo.UserId
-		requestRecord.RequestTime=time.UnixDate
+		year:=time.Now().Year()
+		month:=time.Now().Month().String()//time.Now().Month().String()
+		day:=time.Now().Day()
+
+		requestRecord.RequestTime=strconv.Itoa(year)+"/"+month+"/"+strconv.Itoa(day)
 		requestRecord.RequestInterface="bug track"
 		datasource.RequestRecord(requestRecord)
 
