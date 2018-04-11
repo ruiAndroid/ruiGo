@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"encoding/json"
 	"../../datasource"
+	"time"
 )
 
 //通过以下方式都可以访问到首页
@@ -48,6 +49,7 @@ func (UserBugTrackerController)InsertUserBug(w http.ResponseWriter,r *http.Reque
 	}*/
 	var value string
 	httpJson:=&HttpJson{}
+
 	if len(r.Form["userData"]) > 0 && r.Form["userData"][0]!=""{
 		value=r.Form["userData"][0]
 		//转化json
@@ -62,6 +64,13 @@ func (UserBugTrackerController)InsertUserBug(w http.ResponseWriter,r *http.Reque
 		//插入数据库
 		fmt.Printf("客户端传过来的json: %v \n",userBugTrackInfo)
 		result:=datasource.InsertUserBugInfo(userBugTrackInfo)
+		//记录请求
+		requestRecord:=&datasource.RequestRecordStruct{}
+		requestRecord.UserId=userBugTrackInfo.UserId
+		requestRecord.RequestTime=time.UnixDate
+		requestRecord.RequestInterface="bug追踪"
+		datasource.RequestRecord(requestRecord)
+
 		fmt.Printf("查询的结果:%b",result)
 		if result{
 			httpJson=&HttpJson{Msg:"ok",Code:"200"}

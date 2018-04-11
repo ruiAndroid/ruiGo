@@ -55,6 +55,14 @@ type articleInfo struct {
 	PostTime string `json:"post_time"`
 	Tags string `json:"tags"`
 }
+
+//记录用户请求的
+type RequestRecordStruct struct {
+	UserId string `json:"user_id"`
+	RequestTime string `json:"request_time"`
+	RequestInterface string `json:"request_interface"`
+
+}
 /**
 收集用户bug的struct
  */
@@ -81,6 +89,7 @@ type UserBugTrack struct {
 	VersionId string `json:"version_id"`
 
 }
+
 
 type TagInfo struct {
 	Id int64 `json:"id"`
@@ -122,11 +131,14 @@ func prepare(db *sql .DB,sql string) *sql.Stmt {
 	return stmt
 }
 
+//记录请求
+func RequestRecord(recordStruct *RequestRecordStruct){
+	//记录请求进入数据库
+		
+}
+
 //插入用户bug信息
 func InsertUserBugInfo(userBugTack *UserBugTrack)bool{
-	//执行插入或者更新的语句
-	//先查询数据库中是否有该user_id
-	fmt.Println("来了")
 	//直接插入进数据库
 /*	tx, e := db.Begin()
 	if e!=nil{
