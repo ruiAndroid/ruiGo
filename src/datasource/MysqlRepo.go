@@ -133,8 +133,17 @@ func prepare(db *sql .DB,sql string) *sql.Stmt {
 
 //记录请求
 func RequestRecord(recordStruct *RequestRecordStruct){
+	fmt.Println("fuck:"+recordStruct.RequestInterface)
 	//记录请求进入数据库
-		
+	_, e := db.Exec("INSERT INTO request_record(user_id,request_time,request_interface) VALUES(?,?,?)",
+		recordStruct.UserId,
+		recordStruct.RequestTime,
+		recordStruct.RequestInterface,
+	)
+	if e!=nil{
+		fmt.Println("记录请求错误:"+e.Error())
+	}
+
 }
 
 //插入用户bug信息

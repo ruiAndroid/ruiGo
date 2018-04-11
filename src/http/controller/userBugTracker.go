@@ -68,7 +68,7 @@ func (UserBugTrackerController)InsertUserBug(w http.ResponseWriter,r *http.Reque
 		requestRecord:=&datasource.RequestRecordStruct{}
 		requestRecord.UserId=userBugTrackInfo.UserId
 		requestRecord.RequestTime=time.UnixDate
-		requestRecord.RequestInterface="bug追踪"
+		requestRecord.RequestInterface="bug track"
 		datasource.RequestRecord(requestRecord)
 
 		fmt.Printf("查询的结果:%b",result)
