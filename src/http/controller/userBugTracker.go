@@ -32,22 +32,7 @@ func (my UserBugTrackerController)RegistRoute(){
 
 //收集用户bug的接口
 func (UserBugTrackerController)InsertUserBug(w http.ResponseWriter,r *http.Request){
-/*	if ok:=userBugDefaults[r.RequestURI];!ok{
-		//抛出首页未找到的错误
-		fmt.Println("未找到该网页")
-		http.NotFound(w,r)
-		return
-	}*/
 	r.ParseForm()
-	/*if r.Method=="GET"{
-		fmt.Println("GET请求")
-		fmt.Println("userData:", r.Form["userData"])
-		bytes, _ := ioutil.ReadAll(r.Body)
-		fmt.Println("fuckasdasdas:"+string(bytes))
-	}else{
-		fmt.Println("POST请求")
-
-	}*/
 	var value string
 	httpJson:=&HttpJson{}
 

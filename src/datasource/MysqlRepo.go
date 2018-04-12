@@ -154,8 +154,9 @@ func InsertUserBugInfo(userBugTack *UserBugTrack)bool{
 		return false
 	}*/
 	fmt.Println("看下应用的版本:"+userBugTack.VersionId)
-	//如果是1.4.6版本的则将错误信息插入数据库,否则忽略
-	if fold := strings.EqualFold("1.4.6", userBugTack.VersionId);fold==true{
+	//如果是1.4.6版本或者1.4.7的则将错误信息插入数据库,否则忽略
+	if fold := strings.EqualFold("1.4.6", userBugTack.VersionId) ||
+		strings.EqualFold("1.4.7", userBugTack.VersionId);fold==true{
 		fmt.Println("版本号相等")
 		_, e := db.Exec("INSERT INTO user_bug_track(user_id,bug_type,download_time,phone_model,sd_card_memory,original_zip_size,word_id,audio_file_count,pic_file_count,bug_word_id,test_origin_size,test_word_id,test_audio_file_count,test_pic_file_count,test_bug_date,bug_study_err_msg,bug_study_err_line_num,test_bug_err_msg,test_bug_err_line_num,version_id) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 			userBugTack.UserId,
