@@ -3,7 +3,6 @@ package view
 import (
 	"net/http"
 	"../global"
-	"../config"
 	"html/template"
 	"time"
 	"fmt"
@@ -26,9 +25,9 @@ func Render(w http.ResponseWriter,r *http.Request,html string,data map[string]in
 	}
 
 	data["app"]=global.App.Name
-	data["site_name"]=config.YamlConfig.Get("setting.site_name").String()
-	data["title"]=config.YamlConfig.Get("setting.title").String()
-	data["subtitle"]=config.YamlConfig.Get("setting.subtitle").String()
+	//data["site_name"]=config.YamlConfig.Get("setting.site_name").String()
+	//data["title"]=config.YamlConfig.Get("setting.title").String()
+	//data["subtitle"]=config.YamlConfig.Get("setting.subtitle").String()
 
 	//加载布局模板layout.html
 	tpl, err := template.New("layout.html").Funcs(funcMap).
