@@ -26,5 +26,4 @@ func main() {
 	controller.RegisterRoutes()
 	http.ListenAndServe(addr,route.DefaultBlogMux)
 
-
 }
