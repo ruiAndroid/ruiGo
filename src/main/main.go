@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"os"
 	"bufio"
+	"gopkg.in/yaml.v2"
 )
 
 var configData=&InitConfigYamlStruct{}
@@ -22,16 +23,22 @@ func main() {
 	datasource.Init()
 	//从配置文件中获取监听IP和端口
 	fmt.Println("监听ip以及端口")
-	global.App.Host="0.0.0.0"
-	global.App.Port="80"
-	fmt.Println("ip地址:"+global.App.Host)
-	fmt.Println("端口:"+global.App.Port)
-	addr:=global.App.Host+":"+global.App.Port
-	//注册路由
-	fmt.Println("注册路由")
-	fmt.Println("启动监听")
-	controller.RegisterRoutes()
-	http.ListenAndServe(addr,route.DefaultBlogMux)
+	//从配置文件中读取信息
+	fmt.Println("端口号:"+configData.Listen.Port)
+	fmt.Println("ip地址:"+configData.Listen.Host)
+	if (configData.Listen.Host!="")&& (configData.Listen.Port!="") {
+		global.App.Host=configData.Listen.Host
+		global.App.Port=configData.Listen.Port
+		addr:=global.App.Host+":"+global.App.Port
+		//注册路由
+		fmt.Println("注册路由")
+		fmt.Println("启动监听")
+		controller.RegisterRoutes()
+		http.ListenAndServe(addr,route.DefaultBlogMux)
+	}else{
+		fmt.Println("读取配置文件错误")
+		return
+	}
 
 
 }
@@ -54,21 +61,21 @@ func LoadConfig(){
 		string, err := reader.ReadString('\n')
 		if err!=nil && err.Error()=="EOF"{
 			fmt.Println("读取文件中的字符串错误:"+err.Error())
-			fmt.Println("fuck"+fileStr)
-			return
+			//fmt.Println("fuck"+fileStr)
+			break
 		}
 		if string!=""{
 			fileStr=fileStr+string
 		}
 	}
-	//err = yaml.Unmarshal([]byte(configDatas), &configData)
+
+	err = yaml.Unmarshal([]byte(fileStr), &configData)
 	if err!=nil{
 		fmt.Println("转化配置文件错误")
 		return
+	}else{
+		fmt.Printf("配置文件信息: %v",configData)
 	}
-	fmt.Printf("what the fuck: %v",fileStr)
-
-
 }
 
 //读取yaml的配置文件
@@ -76,7 +83,7 @@ type InitConfigYamlStruct struct {
 
 	Listen struct{
 		Host string `yaml:"host"`
-		Port int64	`yaml:"post"`
+		Port string	`yaml:"port"`
 	}
 
 	Setting struct{
