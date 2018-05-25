@@ -2,11 +2,17 @@ package main
 import("gopkg.in/mgo.v2"
 	"fmt"
 	"gopkg.in/mgo.v2/bson"
+	"time"
+	"bufio"
+	"gopkg.in/yaml.v2"
+	"os"
 )
 
 func main() {
+	//加载配置文件
+	loadSysConfig()
 	//连接mongo数据库
-	session,err:=mgo.Dial("mongodb://rui:jianrui123@120.79.186.178:27017/rui")
+	session,err:=mgo.Dial(configData.DataSource.Monogdbaddr+configData.DataSource.Monogdbdb)
 	defer session.Close()
 	if err!=nil{
 		fmt.Println("连接错误")
@@ -22,7 +28,13 @@ func main() {
 	//先插入一个试试
 	err = C.Insert(&BugInfo{
 		bson.NewObjectId(),
-		"测试信息",
+		"测试apkVersion",
+		"测试SysVersion",
+		"测试PhoneModel",
+		"测试UserPhone",
+		"测试UserName",
+		time.Now().String(),
+		"测试bugMsg",
 	})
 	if err!=nil{
 		fmt.Println("插入失败")
@@ -73,14 +85,51 @@ func main() {
 	//	return
 	//}
 }
+/**
+加载系统配置文件
+ */
+func loadSysConfig(){
+	//打开配置文件并获取
+	configDatas, err:= os.Open("./src/config/env.yml")
+	defer configDatas.Close()
+	//读取配置文件
+	if err!=nil{
+		fmt.Println("读取文件错误"+err.Error())
+		return
+	}
+	reader := bufio.NewReader(configDatas)
+	var fileStr string
+	for{
+		string, err := reader.ReadString('\n')
+		if err!=nil && err.Error()=="EOF"{
+			fmt.Println("读取文件中的字符串错误:"+err.Error())
+			//fmt.Println("fuck"+fileStr)
+			break
+		}
+		if string!=""{
+			fileStr=fileStr+string
+		}
+	}
 
-type User struct {
-	Id_ bson.ObjectId `bson:"_id"`
-	UserName  string `bson:"user_name"`
-	Age string `bson:"age"`
+	err = yaml.Unmarshal([]byte(fileStr), &configData)
+	if err!=nil{
+		fmt.Println("转化配置文件错误")
+		return
+	}else{
+		fmt.Printf("配置文件信息: %v",configData)
+	}
+
 }
 
 type BugInfo struct {
 	Id_ bson.ObjectId `bson:"_id"`
+	ApkVersion string `bson:"apk_version"`
+	SysVersion string `bson:"sys_version"`
+	PhoneModel string `bson:"phone_model"`
+	UserPhone string `bson:"user_phone"`
+	UserName string `bson:"user_name"`
+
+	SendTime string `bson:"send_time"`
 	BugMsg string `bson:"bug_msg"`
 }
+

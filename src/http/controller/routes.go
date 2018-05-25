@@ -6,4 +6,6 @@ func RegisterRoutes(){
 	//new(IndexController).RegistRoute()
 	//注册收集用户bug路由
 	new(UserBugTrackerController).RegistRoute()
+	//收集用户bug存储至mongo中
+
 }

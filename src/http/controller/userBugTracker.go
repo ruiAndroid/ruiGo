@@ -84,3 +84,16 @@ func (UserBugTrackerController)InsertUserBug(w http.ResponseWriter,r *http.Reque
 	}
 
 }
+
+
+type BugMsgCollectionWithMgo struct {
+
+}
+
+func (bugMsg BugMsgCollectionWithMgo)RegisterBugMsgCollectionWithMgo(){
+	http.HandleFunc("/user/bugMsg/",bugMsg.CollectionBugWithMgo)
+}
+//处理请求
+func (BugMsgCollectionWithMgo)CollectionBugWithMgo(response http.ResponseWriter,r *http.Request){
+
+}
