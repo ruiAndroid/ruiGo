@@ -13,6 +13,7 @@ import (
 	_"github.com/go-sql-driver/mysql"
 	"strings"
 	"gopkg.in/mgo.v2/bson"
+	"gopkg.in/mgo.v2"
 )
 
 const(
@@ -119,6 +120,8 @@ type FriendInfo struct{
 	Logo string	`json:"logo"`
 }
 var db *sql.DB
+var mgoSession *mgo.Session
+var err error
 func NewMySql(dbParams string) *MysqlRepo{
 	var e error
 	db, e= sql.Open("mysql", dbParams)
@@ -138,6 +141,16 @@ func NewMySql(dbParams string) *MysqlRepo{
 	}
 }
 
+func InitMgo(){
+	fmt.Println("初始化mgo")
+	//连接mongo数据库
+	mgoSession,err=mgo.Dial("mongodb://rui:jianrui123@120.79.186.178:27017/rui")
+	if err!=nil{
+		fmt.Println("连接错误")
+		fmt.Println(err)
+		return
+	}
+}
 //数据库准备
 func prepare(db *sql .DB,sql string) *sql.Stmt {
 	stmt, e := db.Prepare(sql)
@@ -225,6 +238,25 @@ func InsertUserBugInfo(userBugTack *UserBugTrack)bool{
 	}
 
 }
+func AddInfoToMgo(bugInfoWithMog *BugInfoWithMongo){
+	fmt.Println("开始插入了啊")
+	fmt.Printf("%v",bugInfoWithMog)
+	mgoSession.SetMode(mgo.Monotonic, true)
+	C:=mgoSession.DB("rui").C("bug_info")
+	err = C.Insert(&BugInfo{bugInfoWithMog.Id_,
+		bugInfoWithMog.ApkVersion,
+		bugInfoWithMog.SysVersion,
+		bugInfoWithMog.PhoneModel,
+		bugInfoWithMog.UserPhone,
+		bugInfoWithMog.UserName,
+		bugInfoWithMog.SendTime,
+		bugInfoWithMog.BugMsg,})
+	if err!=nil{
+		fmt.Println("插入错误")
+		fmt.Print(err.Error())
+	}
+
+}
 
 func getString(ids []string) string{
 	var idsValue string
@@ -246,7 +278,21 @@ func arrayToStr(strs []string) string{
 	fmt.Println("要传递的数组转成字符串之后的数据:"+buffer.String())
 	return buffer.String()
 }
+/**
+	bugInfo对应的struct类
 
+ */
+type BugInfo struct {
+	Id_ bson.ObjectId `bson:"_id"`
+	ApkVersion string `bson:"apk_version"`
+	SysVersion string `bson:"sys_version"`
+	PhoneModel string `bson:"phone_model"`
+	UserPhone string `bson:"user_phone"`
+	UserName string `bson:"user_name"`
+
+	SendTime string `bson:"send_time"`
+	BugMsg string `bson:"bug_msg"`
+}
 //读取文章列表
 func (self *MysqlRepo)PostList()[]*model.Post{
 	in, e := ioutil.ReadFile(global.App.ProjectRoot + PostDir + IndexFile)

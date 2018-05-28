@@ -8,6 +8,7 @@ import (
 	"time"
 	"strconv"
 
+	"gopkg.in/mgo.v2/bson"
 )
 
 //通过以下方式都可以访问到首页
@@ -109,8 +110,11 @@ func (UserBugTrackerController)CollectionBugWithMgo(w http.ResponseWriter,r *htt
 		}
 		//插入数据库
 		fmt.Printf("客户端传过来的json: %v \n", bugInfoWithMongo)
+		bugInfoWithMongo.Id_=bson.NewObjectId()
+		bugInfoWithMongo.SendTime=time.Now().String()
 		//然后开始进行bug记录
 		//mgo大神出马
+		datasource.AddInfoToMgo(bugInfoWithMongo)
 
 
 	}else{

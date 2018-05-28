@@ -1,7 +1,6 @@
 package main
-import("gopkg.in/mgo.v2"
+import(
 	"fmt"
-	"gopkg.in/mgo.v2/bson"
 	"bufio"
 	"gopkg.in/yaml.v2"
 	"os"
@@ -9,6 +8,7 @@ import("gopkg.in/mgo.v2"
 	"../global"
 	"../http/controller"
 	"../route"
+	"../datasource"
 )
 
 var config=&InitConfigStruct{}
@@ -16,14 +16,7 @@ var config=&InitConfigStruct{}
 func main() {
 	//加载配置文件
 	loadSysConfig()
-	//连接mongo数据库
-	session,err:=mgo.Dial(config.DataSource.Monogdbaddr+config.DataSource.Monogdbdb)
-	defer session.Close()
-	if err!=nil{
-		fmt.Println("连接错误")
-		fmt.Println(err)
-		return
-	}
+	datasource.Init()
 	if (config.Listen.Host!="")&& (config.Listen.Port!="") {
 		global.App.Host=config.Listen.Host
 		global.App.Port=config.Listen.Port
@@ -142,21 +135,7 @@ func loadSysConfig(){
 
 }
 
-/**
-	bugInfo对应的struct类
 
- */
-type BugInfo struct {
-	Id_ bson.ObjectId `bson:"_id"`
-	ApkVersion string `bson:"apk_version"`
-	SysVersion string `bson:"sys_version"`
-	PhoneModel string `bson:"phone_model"`
-	UserPhone string `bson:"user_phone"`
-	UserName string `bson:"user_name"`
-
-	SendTime string `bson:"send_time"`
-	BugMsg string `bson:"bug_msg"`
-}
 
 //读取yaml的配置文件
 type InitConfigStruct struct {
