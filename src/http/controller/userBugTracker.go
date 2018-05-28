@@ -7,6 +7,7 @@ import (
 	"../../datasource"
 	"time"
 	"strconv"
+
 )
 
 //通过以下方式都可以访问到首页
@@ -29,7 +30,9 @@ type HttpJson struct {
 func (my UserBugTrackerController)RegistRoute(){
 	http.HandleFunc("/user/",my.InsertUserBug)
 }
-
+func (bugMsg UserBugTrackerController)RegisterBugMsgCollectionWithMgo(){
+	http.HandleFunc("/bugMsg/",bugMsg.CollectionBugWithMgo)
+}
 //收集用户bug的接口
 func (UserBugTrackerController)InsertUserBug(w http.ResponseWriter,r *http.Request){
 	r.ParseForm()
@@ -86,14 +89,36 @@ func (UserBugTrackerController)InsertUserBug(w http.ResponseWriter,r *http.Reque
 }
 
 
-type BugMsgCollectionWithMgo struct {
-
-}
-
-func (bugMsg BugMsgCollectionWithMgo)RegisterBugMsgCollectionWithMgo(){
-	http.HandleFunc("/user/bugMsg/",bugMsg.CollectionBugWithMgo)
-}
 //处理请求
-func (BugMsgCollectionWithMgo)CollectionBugWithMgo(response http.ResponseWriter,r *http.Request){
+func (UserBugTrackerController)CollectionBugWithMgo(w http.ResponseWriter,r *http.Request){
+	r.ParseForm()
+	var value string
+	httpJson:=&HttpJson{}
+	//转化json
+	bugInfoWithMongo :=&datasource.BugInfoWithMongo{}
+
+	if len(r.Form["bugInfo"]) > 0 && r.Form["bugInfo"][0]!="" {
+		value = r.Form["bugInfo"][0]
+		//转化json
+		err := json.Unmarshal([]byte(value), bugInfoWithMongo)
+		if err != nil {
+			httpJson = &HttpJson{Msg: "error", Code: "500"}
+			json.NewEncoder(w).Encode(httpJson)
+			fmt.Fprintln(w, httpJson)
+			return
+		}
+		//插入数据库
+		fmt.Printf("客户端传过来的json: %v \n", bugInfoWithMongo)
+		//然后开始进行bug记录
+		//mgo大神出马
+
+
+	}else{
+		fmt.Println("error")
+		//返回Json告诉客户端格式有问题
+		httpJson=&HttpJson{Msg:"error",Code:"500"}
+		json.NewEncoder(w).Encode(httpJson)
+		fmt.Fprint(w, httpJson)
+	}
 
 }

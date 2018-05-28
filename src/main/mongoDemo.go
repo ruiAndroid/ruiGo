@@ -2,50 +2,70 @@ package main
 import("gopkg.in/mgo.v2"
 	"fmt"
 	"gopkg.in/mgo.v2/bson"
-	"time"
 	"bufio"
 	"gopkg.in/yaml.v2"
 	"os"
+	"net/http"
+	"../global"
+	"../http/controller"
+	"../route"
 )
+
+var config=&InitConfigStruct{}
 
 func main() {
 	//加载配置文件
 	loadSysConfig()
 	//连接mongo数据库
-	session,err:=mgo.Dial(configData.DataSource.Monogdbaddr+configData.DataSource.Monogdbdb)
+	session,err:=mgo.Dial(config.DataSource.Monogdbaddr+config.DataSource.Monogdbdb)
 	defer session.Close()
 	if err!=nil{
 		fmt.Println("连接错误")
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(session)
-	//设置session的mode
-	session.SetMode(mgo.Monotonic, true)
-	//通过Session进行增删改查
-	C:=session.DB("rui").C("bug_info")
-	bug_info:=make([]BugInfo,100)
-	//先插入一个试试
-	err = C.Insert(&BugInfo{
-		bson.NewObjectId(),
-		"测试apkVersion",
-		"测试SysVersion",
-		"测试PhoneModel",
-		"测试UserPhone",
-		"测试UserName",
-		time.Now().String(),
-		"测试bugMsg",
-	})
-	if err!=nil{
-		fmt.Println("插入失败")
+	if (config.Listen.Host!="")&& (config.Listen.Port!="") {
+		global.App.Host=config.Listen.Host
+		global.App.Port=config.Listen.Port
+		addr:=global.App.Host+":"+global.App.Port
+		//注册路由
+		fmt.Println("注册路由")
+		fmt.Println("启动监听")
+		controller.RegisterRoutes()
+		http.ListenAndServe(addr,route.DefaultBlogMux)
+	}else{
+		fmt.Println("读取配置文件错误")
 		return
 	}
-	err = C.Find(nil).All(&bug_info)
-	if err!=nil{
-		fmt.Println("查询所有的bug信息错误")
-		return
-	}
-	fmt.Printf("查询的结果:%v",bug_info)
+	//fmt.Println(session)
+	////设置session的mode
+	//session.SetMode(mgo.Monotonic, true)
+	////通过Session进行增删改查
+	//C:=session.DB("rui").C("bug_info")
+	//bug_info:=make([]BugInfo,100)
+	//
+	////先插入一个试试
+	//err = C.Insert(&BugInfo{
+	//	bson.NewObjectId(),
+	//	"测试apkVersion",
+	//	"测试SysVersion",
+	//	"测试PhoneModel",
+	//	"测试UserPhone",
+	//	"测试UserName",
+	//	time.Now().String(),
+	//	"测试bugMsg",
+	//})
+	//
+	//if err!=nil{
+	//	fmt.Println("插入失败")
+	//	return
+	//}
+	//err = C.Find(nil).All(&bug_info)
+	//if err!=nil{
+	//	fmt.Println("查询所有的bug信息错误")
+	//	return
+	//}
+	//fmt.Printf("查询的结果:%v",bug_info)
 
 	//创建切片用来存储从数据库中查询到的数据
 	//user:=make([]User,100)
@@ -84,6 +104,7 @@ func main() {
 	//	fmt.Println("字段增加值错误:"+err.Error())
 	//	return
 	//}
+
 }
 /**
 加载系统配置文件
@@ -111,16 +132,20 @@ func loadSysConfig(){
 		}
 	}
 
-	err = yaml.Unmarshal([]byte(fileStr), &configData)
+	err = yaml.Unmarshal([]byte(fileStr), &config)
 	if err!=nil{
 		fmt.Println("转化配置文件错误")
 		return
 	}else{
-		fmt.Printf("配置文件信息: %v",configData)
+		fmt.Printf("配置文件信息: %v",config)
 	}
 
 }
 
+/**
+	bugInfo对应的struct类
+
+ */
 type BugInfo struct {
 	Id_ bson.ObjectId `bson:"_id"`
 	ApkVersion string `bson:"apk_version"`
@@ -133,3 +158,32 @@ type BugInfo struct {
 	BugMsg string `bson:"bug_msg"`
 }
 
+//读取yaml的配置文件
+type InitConfigStruct struct {
+
+	Listen struct{
+		Host string `yaml:"host"`
+		Port string	`yaml:"port"`
+	}
+
+	Setting struct{
+		Site_name string `yaml:"site_name"`
+		Title string `yaml:"title"`
+		SubTitle string `yaml:"subtitle"`
+	}
+
+	Seo struct{
+		Keywords string `yaml:"keywords"`
+		Description string `yaml:"description"`
+	}
+
+	DataSource struct{
+		DatasourceType string `yaml:"type"`
+		Url string `yaml:"url"`
+		Monogdbaddr string `yaml:"monogdbaddr"`
+		Monogdbdb string `yaml:"monogdbdb"`
+		MysqlAddr string `yaml:"mysqlAddr "`
+	}
+
+	Theme string
+}

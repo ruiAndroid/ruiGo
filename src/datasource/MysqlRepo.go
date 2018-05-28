@@ -12,6 +12,7 @@ import (
 	"bytes"
 	_"github.com/go-sql-driver/mysql"
 	"strings"
+	"gopkg.in/mgo.v2/bson"
 )
 
 const(
@@ -88,6 +89,21 @@ type UserBugTrack struct {
 	TestBugErrLineNum string `json:"test_bug_err_line_num"`
 	VersionId string `json:"version_id"`
 
+}
+
+/**
+	bugInfo对应的struct类
+
+ */
+type BugInfoWithMongo struct {
+	Id_ bson.ObjectId `json:"_id"`
+	ApkVersion string `json:"apk_version"`
+	SysVersion string `json:"sys_version"`
+	PhoneModel string `json:"phone_model"`
+	UserPhone string `json:"user_phone"`
+	UserName string `json:"user_name"`
+	SendTime string `json:"send_time"`
+	BugMsg string `json:"bug_msg"`
 }
 
 
