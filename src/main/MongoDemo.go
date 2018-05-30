@@ -80,7 +80,6 @@ func main() {
 		return
 	}*/
 
-	//删除一条试试
 	//err = C.Remove(bson.M{"user_name": "ruirui"})
 	//if err!=nil{
 	//	fmt.Println("删除错误:"+err.Error())
@@ -96,6 +95,7 @@ func main() {
 	//if err!=nil{
 	//	fmt.Println("字段增加值错误:"+err.Error())
 	//	return
+	//删除一条试试
 	//}
 
 }

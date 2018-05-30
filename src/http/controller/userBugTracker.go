@@ -113,9 +113,8 @@ func (UserBugTrackerController)CollectionBugWithMgo(w http.ResponseWriter,r *htt
 		bugInfoWithMongo.Id_=bson.NewObjectId()
 		bugInfoWithMongo.SendTime=time.Now().String()
 		//然后开始进行bug记录
-		//mgo大神出马
+		//mgo出马
 		datasource.AddInfoToMgo(bugInfoWithMongo)
-
 
 	}else{
 		fmt.Println("error")
