@@ -104,7 +104,7 @@ func main() {
  */
 func loadSysConfig(){
 	//打开配置文件并获取
-	configDatas, err:= os.Open("./src/config/env.yml")
+	configDatas, err:= os.Open("env.yml")
 	defer configDatas.Close()
 	//读取配置文件
 	if err!=nil{
