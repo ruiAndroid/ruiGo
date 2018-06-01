@@ -19,7 +19,7 @@ var DefaultDataSourcer DataSourcer
 
 //Init数据源初始化
 func Init(){
-	DefaultDataSourcer = NewMySql("root:jianrui123@tcp(120.79.186.178:3306)/rui")
+	//DefaultDataSourcer = NewMySql("root:jianrui123@tcp(120.79.186.178:3306)/rui")
 	go InitMgo()
-	go DefaultDataSourcer.UpdateDataSource()
+	//go DefaultDataSourcer.UpdateDataSource()
 }

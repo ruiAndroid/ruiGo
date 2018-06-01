@@ -68,7 +68,6 @@ func LoadConfig(){
 			fileStr=fileStr+string
 		}
 	}
-
 	err = yaml.Unmarshal([]byte(fileStr), &configData)
 	if err!=nil{
 		fmt.Println("转化配置文件错误")

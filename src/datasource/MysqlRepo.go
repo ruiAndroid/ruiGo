@@ -122,6 +122,7 @@ type FriendInfo struct{
 var db *sql.DB
 var mgoSession *mgo.Session
 var err error
+var C *mgo.Collection
 func NewMySql(dbParams string) *MysqlRepo{
 	var e error
 	db, e= sql.Open("mysql", dbParams)
@@ -145,6 +146,8 @@ func InitMgo(){
 	fmt.Println("初始化mgo")
 	//连接mongo数据库
 	mgoSession,err=mgo.Dial("mongodb://rui:jianrui123@120.79.186.178:27017/rui")
+	mgoSession.SetMode(mgo.Monotonic, true)
+	C = mgoSession.DB("rui").C("bug_info")
 	if err!=nil{
 		fmt.Println("连接错误")
 		fmt.Println(err)
@@ -241,8 +244,7 @@ func InsertUserBugInfo(userBugTack *UserBugTrack)bool{
 func AddInfoToMgo(bugInfoWithMog *BugInfoWithMongo){
 	fmt.Println("开始插入了啊")
 	fmt.Printf("%v",bugInfoWithMog)
-	mgoSession.SetMode(mgo.Monotonic, true)
-	C:=mgoSession.DB("rui").C("bug_info")
+
 	err = C.Insert(&BugInfo{bugInfoWithMog.Id_,
 		bugInfoWithMog.ApkVersion,
 		bugInfoWithMog.SysVersion,
